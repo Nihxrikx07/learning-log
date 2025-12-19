@@ -1,32 +1,32 @@
-def respond_to_mood(mood):
-    valid_moods = ["happy","sad","angry","tired"]
-    if not mood:
-        print("It looks like you didn't type anything. That's Okay - take your time...")
-    elif not mood.isalpha():
-        print("That doesn't look like a feeling word.")
-        print("If you'd like, you can try words like : happy, sad, tired, angry")
-    elif mood!= valid_moods:
-        print("Whatever you are feeling now is valid")
-    elif mood in valid_moods:
-        if mood == "happy":
-            print("That's Beautiful.. Keep Enjoying the moment!!")
-        elif mood == "sad":
-            print("It is okay to feel sad sometimes, take things gentle today..")
-        elif mood == "tired":
-            print("Rest is productive too, Be gentle to yourself")
-        elif mood == "angry":
-            print("Take a deep breath. This feeling will pass.")
-        else:
-            print("Thank you for sharing. Whatever you feel is valid")
+def get_mood_response(mood):
+    mood_response = {"happy" : "That's Beautiful.. Keep Enjoying the moment!", "sad":"It is okay to feel sad sometimes, take things gentle today..", "tired":"Rest is productive too, Be gentle to yourself",
+    "angry":"Take a deep breath. This feeling will pass."}
+    if not mood: 
+        return "You didn't type anything and that's okey, take your time.."
+    if not mood.isalpha():
+        return "That doesn't look like a feeling word.\n"
+        "Whatever you're feeling is still valid."
+    return mood_response.get(mood,"Whatever you are feeling is still valid!")
+
 def mood_checker():
     print("Helloo Welcome to the Mood Checker...")
     name = input("What is your name? ")
     print(f"Hey {name}, Glad you are here!")
     while True:
-        mood = input("How are you feeling today? : ").strip().lower()
-        respond_to_mood(mood)
-        again = input("Do you want to check another mood? (yes/no) ").strip().lower()
-        if again != "yes":
-            print("Thankyou for checking in with yourself today.")
+        mood = input("How are you feeling today? (type 'quit' to exit) : ")
+        if mood in ["exit","quit"]:
+            print("\n Thankyou for checking in with yourself today ")
             break
-mood_checker()
+
+        response = get_mood_response(mood)
+        print(response)
+        print("-"*40)
+
+
+def main():
+    mood_checker()
+
+
+
+if __name__ == "__main__":
+    main()
